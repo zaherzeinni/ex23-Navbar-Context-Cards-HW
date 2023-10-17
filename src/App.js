@@ -1,21 +1,25 @@
 import "./index.css";
 import React, { useState } from "react";
 import Navbar from "./Components/Navbar";
+//import Title from "./Components/Title";
 
-import { ChakraProvider ,Center, Box, SimpleGrid} from "@chakra-ui/react";
-import { Data } from "./Components/Data";
-import Cards from "./Components/Cards";
+//import Products from "./Components/ProductsComp";
+import Products from "./Components/Products";
+
+import { ChakraProvider , Box,Center } from "@chakra-ui/react";
+
 import Cart from './Components/Cart';
 
 export default function App() {
 
-  const [page,setPage]= useState("Data");
+  const [page,setPage]= useState("products");
   const [cart,setCart]= useState([]);
 
   // (Data) is changeable
 
   const addToCart = (Data) => {
     let newCart = [...cart];
+   
   
   // step 1 find if Data in cart?
   let itemInCart = newCart.find((item)=> item.Title===Data.Title);
@@ -40,6 +44,7 @@ export default function App() {
 
 const navigateTo = (pageName) => {
   setPage(pageName);
+  console.log("pagename",pageName,page)
 };
 
 const changeQuantity = (Data, amount) => {
@@ -59,28 +64,41 @@ const removeItem = (Data) => {
   setCart(newFilteredItems);
 };
 
-
  
   return (
     <ChakraProvider>
-      <Box bg="#ddfff7" height={"1400px"} columns={[1,2,2,3]}>
-        <Navbar cart={cart} />
-        <Center className="text-4xl font-bold mt-1">
-        Featured Products
-        </Center>
-        <SimpleGrid columns={[1, 1, 2, 3]} spacing={25} mb="20" >
-          {Data.map((Data) => (
-            <Cards 
-            Title={Data.Title}
-            Price={Data.Price}
-            IMG1={Data.IMG1}
-            addToCart={addToCart}
-            />
-          ))}
-        </SimpleGrid>
-        <Center>
-        © 2023 Zaher Zeinni
-        </Center>
+      <Box bg="#ddfff7"  columns={[1,2,2,3]}>
+
+        <Navbar 
+        cart={cart}
+        navigateTo={navigateTo}
+        />
+        
+        {/* <Title 
+        page={page}
+        /> */}
+
+        {page === "products" ? (
+              <Products addToCart={addToCart}
+              cart={cart}
+              page={page}
+              
+              
+              />
+            ) : (
+              <Cart
+                cart={cart}
+                changeQuantity={changeQuantity}
+                clearFromCart={clearFromCart}
+                removeItem={removeItem}
+                page={page}
+                
+              />
+            )}
+<Center pb='5' fontSize={20}>
+© 2023 Zaher Zeinni
+</Center>
+
       </Box>
     </ChakraProvider>
   );

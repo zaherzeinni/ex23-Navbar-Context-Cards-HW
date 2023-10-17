@@ -11,15 +11,22 @@ import {
   NumberInputStepper,
 } from "@chakra-ui/react";
 
+
+import Title from "./Title";
+
 export default function Cart({
   cart,
   changeQuantity,
   clearFromCart,
   removeItem,
+  page,
 }) {
   return (
-    <div>
-      <Center>
+    <div style={{height:"100vh"}}>
+      <Title 
+      page='Cart'
+      />
+      <Center >
         {cart.length > 0 ? (
           <Button colorScheme="red" onClick={clearFromCart}>
             Delete Items
