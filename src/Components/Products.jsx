@@ -16,12 +16,9 @@ const Products = ({addToCart,page,cart}) => {
 <SimpleGrid columns={[1, 1, 2, 3]} spacing={25} mb="20" >
   {Data.map((product,index) => (
     <Cards key={index}
-    Title={product.Title}
-    Price={product.Price}
-    IMG1={product.IMG1}
+    
     addToCart={addToCart}
     product={product}
-    cart={cart}
     
     />
   ))}

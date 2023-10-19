@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Navbar from "./Components/Navbar";
 //import Title from "./Components/Title";
 
-//import Products from "./Components/ProductsComp";
+///import Products from "./Components/ProductsComp";
 import Products from "./Components/Products";
 
 import { ChakraProvider , Box,Center } from "@chakra-ui/react";
@@ -19,6 +19,7 @@ export default function App() {
 
   const addToCart = (Data) => {
     let newCart = [...cart];
+    console.log("Data==>",Data)
    
   
   // step 1 find if Data in cart?
@@ -79,7 +80,8 @@ const removeItem = (Data) => {
         /> */}
 
         {page === "products" ? (
-              <Products addToCart={addToCart}
+              <Products 
+              addToCart={addToCart}
               cart={cart}
               page={page}
               
