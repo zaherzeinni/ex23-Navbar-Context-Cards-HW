@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'antd';
 import { HStack,Container,Center,Box,Button} from "@chakra-ui/react"
-//update 21-10-2023
+////update 21-10-2023
 const App = ({addToCart,product}) => (
   <Center  >
 {/* <Box 
