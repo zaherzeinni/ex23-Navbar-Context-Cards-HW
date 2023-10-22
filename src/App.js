@@ -1,16 +1,60 @@
-import "./index.css";
-import React, { useState } from "react";
+import "./App.css";
+import React, { useState,useEffect } from "react";
 import Navbar from "./Components/Navbar";
-//import Title from "./Components/Title";
 
-///import Products from "./Components/ProductsComp";
 import Products from "./Components/Products";
 
 import { ChakraProvider , Box,Center } from "@chakra-ui/react";
 
 import Cart from './Components/Cart';
 
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Login from "./Components/Login";
+//import Home from "./Components/Home";
+
+
 export default function App() {
+
+
+
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+  // const navigate =useNavigate()
+  const [user, setUser] = useState();
+
+  console.log("isAuth -->", isAuth, auth?.currentUser?.displayName);
+
+  const signuserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      setIsAuth(false);
+      window.location.pathname = "/";
+      //navigate('/login')
+    });
+  };
+
+  useEffect(() => {
+    // when auth user with firebase changed see this changes
+    // eslint-disable-next-line
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      //console.log('user data-->' , user)
+      // data from firebase/auth set in user in useState
+      setUser(user);
+    });
+  }, []);
+
+
+
+
 
   const [page,setPage]= useState("products");
   const [cart,setCart]= useState([]);
@@ -68,25 +112,35 @@ const removeItem = (Data) => {
  
   return (
     <ChakraProvider>
+      <Router>
+      <ToastContainer />
       <Box bg="#ddfff7"  columns={[1,2,2,3]}>
 
         <Navbar 
         cart={cart}
         navigateTo={navigateTo}
-        />
-        
-        {/* <Title 
+        signuserOut={signuserOut}
+        Link={Link}
+        isAuth={isAuth}
+        user={user}
+        setUser={setUser}
         page={page}
-        /> */}
+        
+        />
+
+ 
 
         {page === "products" ? (
-              <Products 
+             
+      
+             
+             <Products 
               addToCart={addToCart}
               cart={cart}
               page={page}
-              
-              
               />
+              
+    
             ) : (
               <Cart
                 cart={cart}
@@ -94,14 +148,30 @@ const removeItem = (Data) => {
                 clearFromCart={clearFromCart}
                 removeItem={removeItem}
                 page={page}
+                addToCart={addToCart}
                 
               />
+              
             )}
+
+         
+
+
+          <Routes>
+           
+            <Route
+              path="/Login"
+              element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />}
+            />
+          </Routes>
+       
+
 <Center pb='5' fontSize={20}>
 © 2023 Zaher Zeinni
 </Center>
 
       </Box>
+      </Router>
     </ChakraProvider>
   );
           }

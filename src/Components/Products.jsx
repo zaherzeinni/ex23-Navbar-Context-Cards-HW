@@ -8,8 +8,7 @@ import Title from './Title';
 const Products = ({addToCart,page,cart}) => {
     return (
         <div>
-            <Title 
-            
+            <Title    
             />
         <Box>
 
@@ -18,7 +17,7 @@ const Products = ({addToCart,page,cart}) => {
     <Cards key={index}
     
     addToCart={addToCart}
-    product={product}
+    product={product}   
     
     />
   ))}

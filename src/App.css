@@ -33,21 +33,20 @@ a {
 
 .createPostPage {
   width: 100%;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 80px);
   display: grid;
   place-items: center;
 }
 
 .cpContainer {
   width: 500px;
-  height: 400px;
+  height: auto;
   padding: 20px;
-  background-color: white;
-  border-radius: 1px;
-  color: black;
+  background-color: black;
+  border-radius: 12px;
+  color: white;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
 }
 
 .cpContainer h1 {
@@ -201,16 +200,3 @@ textarea {
   height: 300px;
   object-fit: cover;
   }
-
-  img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .css-12y4u6o {
-    width: 200px;
-  }
-
-
-
- 

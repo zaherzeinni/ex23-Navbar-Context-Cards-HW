@@ -44,23 +44,23 @@ export default function Cart({
         )}
       </Center>
 
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8 w-full h-16 p-4">
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 w-full h-16 p-4">
         {/* All products */}
 
         {cart.map((product, index) => (
           // inside maping show only  single product
           <div className="py-6" key={index}>
-            <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
+            <div className=" max-w-lg bg-white shadow-lg rounded-lg overflow-hidden">
               <div
-                className="w-1/3  "
-                style={{ backgroundImage: `url('${product.image}')` }}
+                className="object-fit: cover object-position: center"
+                style={{ backgroundImage: `url('${product.IMG1}')` , width:'600px',height:'250px' , objectFit:"cover" ,objectPosition:"50% 50%"}}
               ></div>
 
               {/* //z product content */}
 
               <div className="w-2/3 p-4">
                 <h1 className="text-gray-900 font-bold text-2xl">
-                  {product.name}
+                  {product.Title}
                 </h1>
                 <Box>
                   <Stack shouldWrapChildren direction="row">
@@ -86,7 +86,7 @@ export default function Cart({
                 <div className="flex item-center mt-2"></div>
                 <div className="flex item-center  justify-between mt-3">
                   <h1 className="text-gray-700 font-bold text-xl">
-                    ${product.cost}
+                    ${product.Price}
                   </h1>
                   <button
                     onClick={() => removeItem(product)}

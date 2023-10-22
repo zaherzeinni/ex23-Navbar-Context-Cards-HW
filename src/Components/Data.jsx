@@ -41,11 +41,13 @@ export const Data = [{
     Title:"LENOVO LEGION 5",
     Price:"400$",
     IMG1:"LENOVO LEGION5.jpg",
+
 },{
     
     Title:"MACBOOK PRO",
     Price:"850$",
     IMG1:"MACBOOKPRO.avif",
+
 }
 ]
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { HStack,Container,Center,Box,Button} from "@chakra-ui/react"
 //////update 21-10-2023
-const App = ({addToCart,product}) => (
+const Cards = ({addToCart,product}) => (
   <Center  >
 {/* <Box 
 mt={-5}
@@ -42,5 +42,5 @@ _hover={{transform: 'translatey(-2%)'  }}
   </Center>
   
 );
-export default App;
+export default Cards;
 
